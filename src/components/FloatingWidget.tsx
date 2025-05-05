@@ -9,7 +9,6 @@ export const FloatingWidget = () => {
   useEffect(() => {
     if (window) {
       window.openVoiza = () => {
-        console.log("clicked");
         setIsOpen((prev) => !prev);
       };
     }
