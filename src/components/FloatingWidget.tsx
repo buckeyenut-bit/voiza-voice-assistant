@@ -1,9 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
 import { ChatPopup } from "./ChatPopup";
 import { MessageCircle } from "lucide-react";
 
 export const FloatingWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (window) {
+      window.openVoiza = () => {
+        console.log("clicked");
+        setIsOpen((prev) => !prev);
+      };
+    }
+  }, []);
 
   return (
     <div className="fixed bottom-6 right-6 z-50">
