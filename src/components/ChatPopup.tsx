@@ -6,11 +6,22 @@ import * as Popover from "@radix-ui/react-popover";
 import { Trash } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 
-const agentId =
-  (window as any)?.voizaConfig?.agentId || import.meta.env.VITE_AGENT_ID;
-const userTheme = (window as any)?.voizaConfig?.theme;
+interface VoizaConfig {
+  agentId?: string;
+  theme?: "dark" | "light";
+  title?: string;
+}
 
-const title = (window as any)?.voizaConfig?.title;
+declare global {
+  interface Window {
+    voizaConfig?: VoizaConfig;
+    openVoiza: () => void;
+  }
+}
+
+const agentId = window?.voizaConfig?.agentId || import.meta.env.VITE_AGENT_ID;
+const userTheme = window?.voizaConfig?.theme;
+const title = window?.voizaConfig?.title;
 
 export const ChatPopup = ({
   open,
